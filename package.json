@@ -1,0 +1,19 @@
+{
+  "name": "canvasdemo",
+  "version": "0.0.1",
+  "description": "A canvas demo",
+  "scripts": {
+    "dev": "node src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "html5",
+    "canvas",
+    "requestAnimationFrame"
+  ],
+  "author": "huigeek",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
