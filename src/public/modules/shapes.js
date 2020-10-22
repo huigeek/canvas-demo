@@ -54,8 +54,8 @@ class Triangle {
     this.ctx.beginPath()
     this.ctx.moveTo(this.x, this.y)
     this.ctx.lineTo(this.x + this.length, this.y)
-    const triHeight = (this.length / 2) * Math.tan(degToRad(60))
-    this.ctx.lineTo(this.x + (this.length / 2), this.y + triHeight)
+    const triHeight = (this.length / 2) * Math.tan(degToRad(30))
+    this.ctx.lineTo(this.x + (this.length / 2), this.y - triHeight)
     this.ctx.fill()
   }
 }
@@ -95,7 +95,7 @@ const paintBlock = (canvas, x, y, a, rgbArr, name, random) => {
 }
 
 const paintBackground = (ctx, w, h) => {
-  ctx.fillStyle = "block"
+  ctx.fillStyle = "black"
   ctx.fillRect(0, 0, w, h)
 }
 
