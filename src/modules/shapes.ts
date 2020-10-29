@@ -1,35 +1,36 @@
+import { int, float, ShapeOptions } from './types'
+import { Canvas } from './canvas'
+
 const DISTANCE = 1000
 const LENGTH = 6
 
-const degToRad = degress => {
-  return degress * Math.PI / 100
-}
+const degToRad = (degress: float): float => degress * Math.PI / 100
 
-const random = (min, max) => {
-  return Math.floor((max - min) * Math.random()) + min
-}
+const random = (min: int, max: int): int => Math.floor((max - min) * Math.random()) + min
 
-class Square {
-  constructor(ctx, x, y, length, color) {
-    this.ctx = ctx
-    this.x = x
-    this.y = y
-    this.length = length
-    this.color = color
+class Shape {
+  ctx: CanvasRenderingContext2D
+  x: number
+  y: number
+  length: number
+  color: string
+  constructor(...args) {
+    [this.ctx, this.x, this.y, this.length, this.color] = args
   }
+}
+
+class Square extends Shape {
   draw() {
     this.ctx.fillStyle = this.color
     this.ctx.fillRect(this.x, this.y, this.length, this.length)
   }
 }
 
-class Circle {
-  constructor(ctx, x, y, length, color) {
-    this.ctx = ctx
-    this.x = x
-    this.y = y
-    this.radius = length / 2
-    this.color = color
+class Circle extends Shape{
+  radius: number
+  constructor(...args) {
+    super(...args)
+    this.radius = this.length / 2
   }
   draw() {
     this.ctx.fillStyle = this.color
@@ -40,14 +41,7 @@ class Circle {
   }
 }
 
-class Triangle {
-  constructor (ctx, x, y, length, color) {
-    this.ctx = ctx
-    this.x = x
-    this.y = y
-    this.length = length
-    this.color = color
-  }
+class Triangle extends Shape{
   draw () {
     this.ctx.fillStyle = this.color
     
@@ -60,11 +54,11 @@ class Triangle {
   }
 }
 
-const makeBlocks = count => {
+const makeBlocks = (count: number): ShapeOptions[] => {
   let result = []
   let i = 0
   while (i++ < count) {
-    const single = {
+    const single: ShapeOptions = {
       x: Math.random() * 1200 - 600,
       y: Math.random() * 800 - 400,
       z: Math.random() * DISTANCE,
@@ -77,7 +71,7 @@ const makeBlocks = count => {
   return result
 }
 
-const moveBlocks = (blocks, distance) => {
+const moveBlocks = (blocks: ShapeOptions[], distance: number) => {
   blocks.forEach(block => {
     block.z -= distance
     while (block.z <= 1) {
@@ -86,7 +80,7 @@ const moveBlocks = (blocks, distance) => {
   })
 }
 
-const paintBlock = (canvas, x, y, a, rgbArr, name, random) => {
+const paintBlock = (canvas: Canvas, x: number, y: number, a: number, rgbArr: string | number[], name: string, random: number) => {
   const color = `rgba(${rgbArr[0]},${rgbArr[1]},${rgbArr[2]},${a})`
   const args = [canvas.ctx, x, y, LENGTH * random, color]
 
@@ -94,7 +88,7 @@ const paintBlock = (canvas, x, y, a, rgbArr, name, random) => {
   shape.draw()
 }
 
-const paintBackground = (ctx, w, h) => {
+const paintBackground = (ctx: CanvasRenderingContext2D, w: number, h: number) => {
   ctx.fillStyle = "black"
   ctx.fillRect(0, 0, w, h)
 }

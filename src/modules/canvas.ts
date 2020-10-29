@@ -1,9 +1,14 @@
-const generateId = () => {
-  return Math.random().toString(36).slice(-6)
-}
+const generateId = () =>  Math.random().toString(36).slice(-6)
 
 class Canvas {
-  constructor (parent, width, height) {
+  private id: string
+  private parent: Element
+  
+  public width: number
+  public height: number
+  public ctx: CanvasRenderingContext2D
+
+  constructor (parent: Element, width: number, height: number) {
     this.id = `canvas-${generateId()}`
     this.parent = parent || document.body
     this.width = width || 800

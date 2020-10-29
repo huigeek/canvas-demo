@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "A canvas demo",
   "scripts": {
-    "dev": "tsc && concurrently \"tsc -w\" \"node src/server.js\""
+    "dev": "tsc && concurrently \"tsc -w\" \"node server.js\""
   },
   "keywords": [
     "html5",

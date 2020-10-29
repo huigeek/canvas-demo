@@ -9,8 +9,12 @@
     "removeComments": false,
     "noImplicitAny": false,
     "suppressImplicitAnyIndexErrors": true,
-    "lib": ["es2016","dom"]
+    "lib": ["es2016","dom"],
+    "outDir": "dist"
   },
+  "include": [
+    "src",
+  ],
   "exclude": [
     "node_modules"
   ]
